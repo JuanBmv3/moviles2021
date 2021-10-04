@@ -33,6 +33,7 @@ class _PopupalScreenState extends State<PopupalScreen> {
               return _listPopularMovies(snapshot.data);
             }else{
               return CircularProgressIndicator();
+              
             }
           }
       }
