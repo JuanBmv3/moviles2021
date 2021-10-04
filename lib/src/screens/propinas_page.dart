@@ -24,9 +24,7 @@ class _PropinaPageState extends State<PropinaPage> {
         child: ListView(
           shrinkWrap: true,
           children: [
-            Center(
-             child: cardMonto(),
-            ),
+            cardMonto(),
             SizedBox(height: 30.0),
             buttonPay(),
           ],),

@@ -66,7 +66,7 @@ class _LoginState extends State<Login> {
       isLoading = true;
       setState((){
         Future.delayed(
-          Duration(seconds:15),(){
+          Duration(seconds:5),(){
             Navigator.push(context, MaterialPageRoute(
               builder: (context)=> DashboardScreen()));
           }

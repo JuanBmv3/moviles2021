@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:practica2/src/screens/agregar_nota.dart';
 import 'package:practica2/src/screens/intenciones_screen.dart';
-import 'package:practica2/src/screens/login.dart';
+import 'package:practica2/src/screens/movies_screen/popular_screen.dart';
+import 'package:practica2/src/screens/notas_screen.dart';
+import 'package:practica2/src/screens/profile_screen.dart';
 import 'package:practica2/src/screens/propinas_page.dart';
 import 'package:practica2/src/screens/splash_screen.dart';
 
@@ -18,6 +21,10 @@ class MyApp extends StatelessWidget {
       routes: {
         '/opc1' : (BuildContext context) => PropinaPage(),
         '/intenciones' : (BuildContext context) => IntencionesScreen(),
+        '/notas' : (BuildContext context) => NotasScreen(),
+        '/agregar' : (BuildContext context) => AgregarNotaScreen(),
+        '/profile' : (BuildContext context) => ProfileScreen(),
+        '/movie' : (BuildContext context) => PopupalScreen(),
         
       },
       debugShowCheckedModeBanner: false,
