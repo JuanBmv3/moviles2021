@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class PropinaPage extends StatefulWidget {
   PropinaPage({Key? key}) : super(key: key);
@@ -53,7 +54,8 @@ class _PropinaPageState extends State<PropinaPage> {
 
                   TextField(  
                     controller: controller,
-                    keyboardType: TextInputType.number,
+                    keyboardType: TextInputType.numberWithOptions(decimal: true),
+                
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20.0)
@@ -63,12 +65,19 @@ class _PropinaPageState extends State<PropinaPage> {
                      
                     ),
                     onChanged: (valor){
-                      setState(() {
-                        monto = double.parse(valor);
-                        propina = monto * .15;
-                        total = propina + monto;
-                        print(propina);
-                      });
+                       valor = valor.replaceAll(',','.');
+                      if (double.tryParse(valor) == null) {
+                         
+                      }else{
+                        setState(() {
+
+                         
+                          monto = double.parse(valor);
+                          propina = monto * .15;
+                          total = propina + monto;
+                          
+                        });
+                      }
                     }
                   )
                 

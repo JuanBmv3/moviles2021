@@ -60,7 +60,7 @@ class DatabaseHelperProfile{
       return  ProfileModel.fromMap(result.first);
     }else{
       return ProfileModel(
-        nombre: 'Sin nombre',
+        nombre: 'Invitado',
         a_paterno: '',
         a_materno: '',
         num_tel: '',

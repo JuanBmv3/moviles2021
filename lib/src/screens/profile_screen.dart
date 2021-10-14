@@ -32,6 +32,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
   String imageBefore = "";
   String imgDB = "";
   var profile;
+  bool mensajeN = false;
+  bool mensajeAp = false;
+  bool mensajeAm = false;
+  bool mensajeNum = false;
+  bool mensajeE = false;
 
   @override
   void initState() {
@@ -54,12 +59,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
           }else{
             if(snapshot.connectionState == ConnectionState.done){
               profile = snapshot.data;
-        _nombreController.text = profile!.nombre!;
-        _aPaternoController.text = profile.a_paterno!;
-        _aMaternoController.text = profile.a_materno!;
-        _numTelController.text = profile.num_tel!;
-        _correoController.text = profile.correo!;
-        imageBefore = profile.image;
+              _nombreController.text = profile!.nombre!;
+              _aPaternoController.text = profile.a_paterno!;
+              _aMaternoController.text = profile.a_materno!;
+              _numTelController.text = profile.num_tel!;
+              _correoController.text = profile.correo!;
+              imageBefore = profile.image;
         
         
         return Scaffold(
@@ -118,7 +123,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
         hintText: 'Nombre',
         labelText: 'Nombre',
         suffixIcon: Icon(Icons.accessibility),
-        icon: Icon(Icons.account_circle)
+        icon: Icon(Icons.account_circle),
+        errorText: mensajeN ? 'Este campo es obligatorio' : null
       ),
 
       
@@ -136,7 +142,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
         hintText: 'Apellido Paterno',
         labelText: 'Apellido Paterno',
         suffixIcon: Icon(Icons.accessibility),
-        icon: Icon(Icons.account_circle)
+        icon: Icon(Icons.account_circle),
+        errorText: mensajeAp ? 'Este campo es obligatorio' : null
       ),
 
      
@@ -156,7 +163,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
         hintText: 'Apellido Materno',
         labelText: 'Apellido Materno',
         suffixIcon: Icon(Icons.accessibility),
-        icon: Icon(Icons.account_circle)
+        icon: Icon(Icons.account_circle),
+        errorText: mensajeAm ? 'Este campo es obligatorio' : null
       ),
 
      
@@ -168,7 +176,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
  Widget _inputNumTel() {
     return TextField(
       controller: _numTelController,
-      keyboardType: TextInputType.number,
+      keyboardType: TextInputType.phone,
       decoration: InputDecoration(
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(20.0)
@@ -177,6 +185,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         labelText: 'Num. Telefonico',
         suffixIcon: Icon(Icons.dialpad),
         icon: Icon(Icons.contact_phone),
+        errorText: mensajeNum ? 'Este campo es obligatorio' : null
       ),
     );
   }
@@ -193,7 +202,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
         hintText: 'Correo Electronico',
         labelText: 'Correo Electronico',
         suffixIcon: Icon(Icons.alternate_email),
-        icon: Icon(Icons.email)
+        icon: Icon(Icons.email),
+        errorText: mensajeE ? 'Este campo es obligatorio' : null
       ),
 
      
@@ -228,7 +238,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
           correo: _correoController.text,
           image: imgDB
         );
-
+        
+        if(!_correoController.text.contains('@')){
+          ScaffoldMessenger.of(context).showSnackBar(
+             SnackBar(
+              content: Text('El correo no contiene un @')
+               )
+              );
+        }else{
+          if(_nombreController.text.isEmpty){
+            ScaffoldMessenger.of(context).showSnackBar(
+             SnackBar(
+              content: Text('El campo de tu nombre esta vacio')
+               )
+              );
+          }else{
+            
         _databaseHelperProfile.update(profile.toMap()).then((value) {
           if(value > 0){
              ScaffoldMessenger.of(context).showSnackBar(
@@ -243,7 +268,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
               )
             );
           }
-        } );
+          });
+        }
+      }
     },
   );      
  }

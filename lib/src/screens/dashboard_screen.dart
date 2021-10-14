@@ -41,7 +41,14 @@ class _DashboardScreenState extends State<DashboardScreen> {
           child: ListView(
             children: [
               GestureDetector(
-                onTap:() => Navigator.pushNamed(context, '/profile'),
+                onTap:(){
+                  Navigator.pushNamed(context, '/profile').whenComplete(
+                    (){ setState(() {
+                                      
+                      });
+                    }
+                  );
+                } ,
                 child: UserAccountsDrawerHeader(
                 
                   accountName: Text("${profile!.nombre!} ${profile.a_paterno!} ${profile.a_materno!} ") , 
@@ -107,6 +114,16 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 onTap: (){
                   Navigator.pop(context);
                   Navigator.pushNamed(context, '/movie');
+                },
+              ),
+              ListTile(
+                title: Text('Tareas'),
+                subtitle: Text('Organizador de tareas'),
+                leading: Icon(Icons.assignment),
+                trailing: Icon(Icons.chevron_right),
+                onTap: (){
+                  Navigator.pop(context);
+                  Navigator.pushNamed(context, '/tareas');
                 },
               ),
             ],

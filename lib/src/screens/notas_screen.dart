@@ -71,6 +71,16 @@ class _NotasScreenState extends State<NotasScreen> {
         itemBuilder: (BuildContext context, index){
           NotasModel nota = notas[index];
           return Card(
+            elevation: 15.0, //bordees oscuros
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.only(bottomLeft: Radius.circular(15),bottomRight: Radius.circular(15), ), ), //esquinas redondas
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: Border(
+                        top: BorderSide(
+                          width: 7.0 , color: Colors.blue
+                        )
+                      )
+                    ),
             child: Column(
               children: [
                 Text(nota.titulo!, style: TextStyle(fontWeight: FontWeight.bold),),
@@ -116,7 +126,6 @@ class _NotasScreenState extends State<NotasScreen> {
                                 TextButton(
                                   onPressed: (){
                                     Navigator.pop(context);
-    
                                   },
                                   child: Text('No') ,
                                 ),
@@ -132,7 +141,7 @@ class _NotasScreenState extends State<NotasScreen> {
                 )
               ],
             ),
-          );
+                    )          );
         },
         itemCount:notas.length,
       ),
