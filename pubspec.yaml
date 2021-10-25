@@ -36,6 +36,11 @@ dependencies:
   http: ^0.13.3
   google_fonts: ^2.1.0
   intl: ^0.17.0
+  youtube_player_flutter: ^8.0.0
+  flutter_rating_bar: ^4.0.0
+ 
+
+
 
 
 dev_dependencies:

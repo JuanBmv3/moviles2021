@@ -61,7 +61,7 @@ class DatabaseHelperTarea{
 
   Future<List<TareasModel>> getTareasActuales() async{
     var conexion = await database;
-    var result = await conexion!.query(_nombreTBL, where: 'entregada = 1',);
+    var result = await conexion!.query(_nombreTBL, where: 'entregada = ',);
    return result.map((notaMap) => TareasModel.fromMap(notaMap)).toList();
   }
   

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:practica2/src/screens/agregar_nota.dart';
 import 'package:practica2/src/screens/intenciones_screen.dart';
+import 'package:practica2/src/screens/movies_screen/detail_screen.dart';
+import 'package:practica2/src/screens/movies_screen/lista_fav.dart';
 import 'package:practica2/src/screens/movies_screen/popular_screen.dart';
 import 'package:practica2/src/screens/notas_screen.dart';
 import 'package:practica2/src/screens/profile_screen.dart';
@@ -29,6 +31,8 @@ class MyApp extends StatelessWidget {
         '/movie' : (BuildContext context) => PopupalScreen(),
         '/tareas' : (BuildContext context) => TareasScreen(),
         '/agregar_tareas' : (BuildContext context) => AgregarTareasScreen(),
+        '/detail': (BuildContext context) => DetailScreen(),
+        '/favorites': (BuildContext context) => ListaFavScreen(),
         
       },
       debugShowCheckedModeBanner: false,
